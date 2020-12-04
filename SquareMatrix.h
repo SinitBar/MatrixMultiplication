@@ -8,15 +8,18 @@ class Square_matrix
 {
 	int degree_of_two = 0; // [log(side_size)] + 1
 	int side_size = 1; //Square_matrix has sides with side_size = 2 in some degree
-	double* massive = NULL;
-	Square_matrix() {}
+	double* array = nullptr;
 public:
 	//Constructors
+	Square_matrix();
 	Square_matrix(const Square_matrix&); // creates N2_matrix equal to another N2_matrix
 	Square_matrix(int); // creates empty Square_matrix with the side of square matrix = 2^(int_data)
-	Square_matrix(int, int, int, ifstream&);
+	Square_matrix(double*, int, int, int);
+	Square_matrix(double**, int, int, int);
 	//interface
 	int size() const; // ??? // retunrs a size of a square-side of matrix
+
+	void stream_fill_square_matrix(int, int, int, ifstream&);
 
 	double& operator() (int, int); // returns Square_matrix[i][j]
 
@@ -34,14 +37,18 @@ public:
 
 	friend bool const operator == (const Square_matrix&, const Square_matrix&);
 
-	void multimatrix(const Square_matrix& matr1, const Square_matrix& matr2);
+	void multi_square_matrix(const Square_matrix& matr1, const Square_matrix& matr2);
 
 	//destructors
 	virtual ~Square_matrix()
 	{
-		delete[] massive;
+		delete[] array;
 	}
 };
 
-int get_future_n2_matrix_degree(int size1i, int size1j, int size2j);
+int get_future_square_matrix_degree(int size1i, int size1j, int size2j);
+
+void multimatrix_from_file();
+
+double** multimatrix(const int&, const int&, double**, const int&, const int &, double**);
 
